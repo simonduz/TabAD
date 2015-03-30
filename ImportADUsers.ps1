@@ -140,7 +140,7 @@ $linecount = 0
 # Set the file counter to 1. This is used for the naming of the log files 
 $filenumber = 1 
 
-# Find the current line count to present to the user before asking the new line count for chunk files 
+# Find the current line count. 
 Get-Content $ADUsers_All | Measure-Object | ForEach-Object { $sourcelinecount = $_.Count } 
  
 #Tell me how large the current file is 
@@ -190,7 +190,7 @@ $linecount = 0
 # Set the file counter to 1. This is used for the naming of the log files 
 $filenumber = 1 
 
-# Find the current line count to present to the user before asking the new line count for chunk files 
+# Find the current line count. 
 Get-Content $ADUsers_ID | Measure-Object | ForEach-Object { $sourcelinecount = $_.Count } 
  
 #Tell me how large the current file is 
