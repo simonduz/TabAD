@@ -126,13 +126,13 @@ Add-Member -InputObject $ADObj -MemberType NoteProperty -name "TableauPublish" -
 Add-Member -InputObject $ADObj -MemberType NoteProperty -name "EmailAddress" -value $_.EmailAddress
 $ADObj } | 
 
-# Done querying Active Directory Writing the ADUsers_All.csv now."
+# Done querying Active Directory Writing the ADUsers_All.csv now.
 
 ConvertTo-CSV -notype | Select -skip 1 | %{ $_ -replace '"',"" } | out-file $ADUsers_All -force -Encoding Ascii
 
 # 
 # Split a user file into smaller files. 
-# This will take a while with extremely large files. 
+# This will take a while with large files. 
 #  
 # Set the baseline counters  
 # Set the line counter to 0 
