@@ -50,7 +50,6 @@ $OutFile = "groups filename.csv"
       $conn=New-Object System.Data.Odbc.OdbcConnection
       $connStr = "Driver={PostgreSQL Unicode(x64)};Server=$DBServer;Port=$DBPort;Database=$DBName;Uid=$DBUID;Pwd=$DBPSWD;"
       $conn.ConnectionString= $connStr
-
       # display :
       " "
       "Connection :"
@@ -59,7 +58,6 @@ $OutFile = "groups filename.csv"
       "SQL :"
       $query
       " "
-
       [void]$conn.open
       $cmd=new-object System.Data.Odbc.OdbcCommand($query,$conn)
       $cmd.CommandTimeout=15
@@ -70,17 +68,13 @@ $OutFile = "groups filename.csv"
       $ds.Tables[0] | 
       Select-Object name,url_namespace |
       ConvertTo-CSV -notype | %{ $_ -replace '"',"" } | out-file $OutPath$OutFile -force -Encoding Ascii
-
-      #out-gridview
       [void]$conn.close()
     }
-
     # main:
     Get-ODBC-Data -server $DBServer -port $DBPort  -database $DBName -query $cSQL
 
 ####  BEGIN TABCMD  ####
 cd $TabPath
-
 # Sync AD Groups
 # Grab the file and put contents in an array.
 $ADGroupFiles = Import-Csv $OutPath$OutFile 
